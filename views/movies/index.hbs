@@ -2,8 +2,15 @@
 
 {{#each movies}}
     <div>
-        <a href="/movies/{{this.title}}">{{this.title}}</a>
+        <h4>Title: {{this.title}}</h4>
+        <h4>Genre: {{this.genre}}</h4>
+        <h4>Plot: {{this.plot}}</h4>
+        {{#each this.cast}}
+             <h4>my cast: {{this}}</h4>
+        {{/each}}
+       
+       
     </div>
 {{/each}}
-
+<p></p>
 <a href="/movies/new">Create new movie!</a>

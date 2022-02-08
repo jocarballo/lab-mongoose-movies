@@ -6,7 +6,7 @@ mongoose.connect('mongodb://localhost/movies-lab')
 	.catch(err => console.log(err))
 
 const Celebrity = require('../models/Celebrity')
-const Movie = require('./models/Movie')
+const Movie = require('../models/Movie')
 
 const celebrities = [
     {
