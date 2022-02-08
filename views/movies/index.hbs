@@ -5,10 +5,15 @@
         <h4>Title: {{this.title}}</h4>
         <h4>Genre: {{this.genre}}</h4>
         <h4>Plot: {{this.plot}}</h4>
-        {{#each this.cast}}
-             <h4>my cast: {{this}}</h4>
-        {{/each}}
-       
+        <ul>
+            {{#each this.cast}}
+                <li><h4>my cast: {{this.name}}</h4></li>
+            {{/each}}
+        </ul>
+        
+       <form action="/movies/{{_id}}/edit" method="GET">
+        <button type="submit">Edit</button>
+        </form>
        
     </div>
 {{/each}}

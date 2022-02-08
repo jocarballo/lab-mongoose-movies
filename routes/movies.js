@@ -7,7 +7,7 @@ const Movie = require('../models/Movie')
 
 router.get('/movies', (req, res, next) => {
     // gel all the celebrities
-    Movie.find()
+    Movie.find().populate('cast')
         .then(movies => {
             console.log('Movies:', movies);
             // render a view
@@ -37,5 +37,31 @@ router.post('/movies', (req, res, next) => {
         })
 })
 
+
+router.get('/movies/:id/edit', (req, res, next) => {
+    const id = req.params.id
+	Movie.findById(id)
+        .then(movie => {
+            res.render('movies/edit', { 
+                id: id,
+                movie: movie }
+            )
+        })
+        .catch(err => next(err))
+})
+
+router.post('/movies/:id', (req, res, next) => {
+    let id = req.params.id
+    const { title, genre, plot, cast } = req.body
+    Movie.findByIdAndUpdate({_id: id}, { title, genre, plot, cast })
+        .then(movie => {
+            console.log('Edit worked!');
+            res.redirect('/movies')
+        })
+        .catch(err => { 
+            console.error(err);
+            next(err)
+        })
+})
 
 module.exports = router;
