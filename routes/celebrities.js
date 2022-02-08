@@ -1,7 +1,7 @@
 const express = require('express');
 const { render } = require('../app');
 const router = express.Router();
-const Celebrity = require('../models/celebrity')
+const Celebrity = require('../models/Celebrity')
 
 router.get('/celebrities', (req, res, next) => {
     // gel all the celebrities

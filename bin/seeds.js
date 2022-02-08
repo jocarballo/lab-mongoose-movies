@@ -5,7 +5,8 @@ mongoose.connect('mongodb://localhost/movies-lab')
 	.then(db => console.log(`connected to database ${db.connections[0].name}`))
 	.catch(err => console.log(err))
 
-const Celebrity = require('../models/celebrity')
+const Celebrity = require('../models/Celebrity')
+const Movie = require('./models/Movie')
 
 const celebrities = [
     {
@@ -19,14 +20,17 @@ const celebrities = [
         catchPhrase: "To infinity, and beyond!"
 	},
 	{
-		name: "Angela Yu",
-		occupation: "Developer",
-        catchPhrase: "For all of that and more, see you next month!"
+		name: "Michael Scott",
+		occupation: "Actor",
+        catchPhrase: "That's what she said!"
 	}
 ]
 
+
+
+
 // Call the Celebrity model's create method with the array as argument.
-Celebrity.create(celebrities)
+Celebrity.insertMany(celebrities)
     .then(celebrities => {
         console.log('Here we got celebrities: ' + celebrities)
         mongoose.connection.close();
